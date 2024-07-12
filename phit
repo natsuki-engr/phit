@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+require_once('./command/init.php');
+
+$commands = [
+	Init::class
+];
+
+$subCommand = $argv[1] ?? '';
+foreach($commands as $command) {
+	if($command::$command === $subCommand) {
+		$class = new $command();
+		$class->execute(array_slice($argv, 2, $argc - 2));
+	}
+
+	if(empty($class)) {
+		echo "Invalid command: $subCommand\n";
+		exit(1);
+	}
+}
