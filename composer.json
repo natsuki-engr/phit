@@ -1,0 +1,18 @@
+{
+    "name": "natsuki/phit",
+    "description": "build my own git by PHP",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Natsuki\\Phit\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "natsuki-engr",
+            "email": "biafrajr@gmail.com"
+        }
+    ],
+    "require": {}
+}
