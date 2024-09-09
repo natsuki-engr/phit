@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once('./command/init.php');
+require_once('./command/Init.php');
 
 $commands = [
 	Init::class
