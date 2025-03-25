@@ -1,19 +1,21 @@
 <?php
 
-require_once dirname(__FILE__) . '/CommandBase.php';
+namespace App\Command;
 
-class Init extends CommandBase
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+#[AsCommand(name: 'init')]
+class Init extends Command
 {
-    public static $command = 'init';
-
     protected static $phitDir = './.phit';
 
     protected static $defaultBranch = 'ref: refs/heads/main';
 
-    public static function execute(array $args)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        echo 'init';
-
         if (is_dir(self::$phitDir)) {
             echo self::$phitDir . ' directory already exists';
             exit(1);
@@ -23,6 +25,7 @@ class Init extends CommandBase
         }
 
         echo "your phit is initialized";
+        return Command::SUCCESS;
     }
 
     protected static function initDir()
