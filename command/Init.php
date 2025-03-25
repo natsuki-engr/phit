@@ -6,8 +6,10 @@ class Init extends CommandBase
 {
     public static $command = 'init';
 
-    protected static $phitDir = './.phit';
+    /** @var string */
+    const phitDir = './.phit';
 
+    /** @var string */
     protected static $defaultBranch = 'ref: refs/heads/main';
 
     public static function execute(array $args)
@@ -25,9 +27,17 @@ class Init extends CommandBase
         echo "your phit is initialized";
     }
 
+    /**
+     * @return void
+     */
     protected static function initDir()
     {
         $headFIle = fopen(self::$phitDir . '/HEAD', 'w');
+        if(!$headFIle) {
+            echo "couldn't find HEAD";
+            exit();
+        }
+
         fwrite($headFIle, self::$defaultBranch);
 
         mkdir(self::$phitDir . "/objects");
