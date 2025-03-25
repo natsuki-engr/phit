@@ -1,21 +1,13 @@
 #!/usr/bin/env php
 <?php
 
-require_once('./command/init.php');
+require __DIR__ . '/vendor/autoload.php';
 
-$commands = [
-	Init::class
-];
+use App\Command\WorldCommand;
+use Symfony\Component\Console\Application;
 
-$subCommand = $argv[1] ?? '';
-foreach($commands as $command) {
-	if($command::$command === $subCommand) {
-		$class = new $command();
-		$class->execute(array_slice($argv, 2, $argc - 2));
-	}
+// require_once('./command/init.php');
 
-	if(empty($class)) {
-		echo "Invalid command: $subCommand\n";
-		exit(1);
-	}
-}
+$application = new Application();
+$application->add(new WorldCommand());
+$application->run();

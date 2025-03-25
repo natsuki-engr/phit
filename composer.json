@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Natsuki\\Phit\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
@@ -14,5 +14,7 @@
             "email": "biafrajr@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/console": "^7.2"
+    }
 }
