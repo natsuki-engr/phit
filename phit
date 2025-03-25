@@ -6,8 +6,6 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Command\WorldCommand;
 use Symfony\Component\Console\Application;
 
-// require_once('./command/init.php');
-
 $application = new Application();
 $application->add(new WorldCommand());
 $application->run();
