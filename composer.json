@@ -15,6 +15,7 @@
         }
     ],
     "require": {
+        "phpstan/phpstan": "^2.1",
         "symfony/console": "^7.2"
     }
 }
