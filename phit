@@ -3,9 +3,13 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+use App\Command\Add;
+use App\Command\CatFile;
 use App\Command\Init;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new Init());
+$application->add(new Add());
+$application->add(new CatFile());
 $application->run();
