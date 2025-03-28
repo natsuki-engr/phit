@@ -10,17 +10,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'init')]
 class Init extends Command
 {
-    protected static $phitDir = './.phit';
+    const phitDir = './.phit';
+    const objectDir = self::phitDir  . DIRECTORY_SEPARATOR . "objects";
 
     protected static $defaultBranch = 'ref: refs/heads/main';
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (is_dir(self::$phitDir)) {
-            echo self::$phitDir . ' directory already exists';
+        if (is_dir(self::phitDir)) {
+            echo self::phitDir . ' directory already exists';
             exit(1);
         } else {
-            mkdir(self::$phitDir);
+            mkdir(self::phitDir);
             self::initDir();
         }
 
@@ -28,14 +29,22 @@ class Init extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return void
+     */
     protected static function initDir()
     {
-        $headFIle = fopen(self::$phitDir . '/HEAD', 'w');
+        $headFIle = fopen(self::phitDir . '/HEAD', 'w');
+        if(!$headFIle) {
+            echo "couldn't find HEAD";
+            exit();
+        }
+
         fwrite($headFIle, self::$defaultBranch);
 
-        mkdir(self::$phitDir . "/objects");
+        mkdir(self::objectDir);
 
-        mkdir(self::$phitDir . "/refs");
-        mkdir(self::$phitDir . '/refs/heads');
+        mkdir(self::phitDir . "/refs");
+        mkdir(self::phitDir . '/refs/heads');
     }
 }
