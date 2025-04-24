@@ -2,4 +2,4 @@ parameters:
 	level: 10
 	paths:
 		- phit
-		- command
+		- src
